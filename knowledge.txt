@@ -1,0 +1,50 @@
+SQL is used to manage relational databases (tables with rows and columns) and perform CRUD operations. Query optimization improves query performance by reducing execution time, CPU usage, and disk I/O, especially for large datasets and complex queries.
+The Query Optimizer selects the best execution plan, which shows steps like table scan, index scan, joins, and sorting. Optimization can be heuristic-based (rules) or cost-based (statistics).
+Key techniques include using indexes, filtering early, avoiding unnecessary data, and analyzing execution plans. Indexes speed up queries but slow inserts/updates.
+Joins combine tables (INNER, LEFT, RIGHT, etc.), and execution methods include nested loop, hash, and merge joins. Overall, optimization ensures faster and more efficient database performance.
+SQL Commands with Description
+CREATE DATABASE Creates a new database. Syntax: CREATE DATABASE database_name;
+USE DATABASE Selects a database. Syntax: USE database_name;
+ALTER DATABASE Modifies database. Syntax: ALTER DATABASE database_name MODIFY NAME = new_name;
+DROP DATABASE Deletes database. Syntax: DROP DATABASE database_name;
+CREATE TABLE Creates a table. Syntax: CREATE TABLE table_name ( column datatype );
+ALTER TABLE Modifies table. Syntax: ALTER TABLE table_name ADD column datatype;
+DROP TABLE Deletes table. Syntax: DROP TABLE table_name;
+INSERT INTO Adds data. Syntax: INSERT INTO table_name (columns) VALUES (values);
+UPDATE Updates data. Syntax: UPDATE table_name SET column=value WHERE condition;
+DELETE Deletes records. Syntax: DELETE FROM table_name WHERE condition;
+SELECT Retrieves data. Syntax: SELECT * FROM table_name;
+DISTINCT Unique values. Syntax: SELECT DISTINCT column FROM table_name;
+WHERE Filters data. Syntax: SELECT * FROM table_name WHERE condition;
+ORDER BY Sorts data. Syntax: SELECT * FROM table_name ORDER BY column ASC/DESC;
+LIMIT Limits rows. Syntax: SELECT * FROM table_name LIMIT number;
+GROUP BY Groups data. Syntax: SELECT column, COUNT(*) FROM table_name GROUP BY column;
+HAVING Filters grouped data. Syntax: SELECT column FROM table_name GROUP BY column HAVING condition;
+LIKE Pattern matching. Syntax: SELECT * FROM table_name WHERE column LIKE ‘pattern’;
+IN Multiple values. Syntax: SELECT * FROM table_name WHERE column IN (values);
+BETWEEN Range filter. Syntax: SELECT * FROM table_name WHERE column BETWEEN x AND y;
+IS NULL Check NULL. Syntax: SELECT * FROM table_name WHERE column IS NULL;
+COUNT Counts rows. Syntax: SELECT COUNT(*) FROM table_name;
+SUM Total. Syntax: SELECT SUM(column) FROM table_name;
+AVG Average. Syntax: SELECT AVG(column) FROM table_name;
+MIN/MAX Min and Max. Syntax: SELECT MIN(column), MAX(column) FROM table_name;
+PRIMARY KEY Description: Unique identifier for each record, cannot be NULL. Syntax: CREATE TABLE table_name ( id INT PRIMARY KEY, name VARCHAR(50) );
+FOREIGN KEY Description: Links two tables. Syntax: CREATE TABLE orders ( order_id INT, user_id INT, FOREIGN KEY (user_id) REFERENCES users(id) );
+UNIQUE Description: Ensures all values are unique. Syntax: CREATE TABLE users ( email VARCHAR(100) UNIQUE );
+NOT NULL Description: Column cannot have NULL values. Syntax: CREATE TABLE users ( name VARCHAR(50) NOT NULL );
+CHECK Description: Validates condition. Syntax: CREATE TABLE users (age INT CHECK (age >= 18) );
+INNER JOIN Description: Returns matching records. Syntax: SELECT * FROM A INNER JOIN B ON A.id = B.id;
+LEFT JOIN Description: All records from left + matched right. Syntax: SELECT * FROM A LEFT JOIN B ON A.id = B.id;
+RIGHT JOIN Description: All records from right + matched left. Syntax: SELECT * FROM A RIGHT JOIN B ON A.id = B.id;
+FULL JOIN Description: All records from both tables. Syntax: SELECT * FROM A FULL JOIN B ON A.id = B.id;
+CROSS JOIN Description: All combinations of rows. Syntax: SELECT * FROM A CROSS JOIN B;
+SUBQUERY Description: Query inside another query. Syntax: SELECT * FROM students WHERE age > (SELECT AVG(age) FROM students);
+VIEW Description: Virtual table based on query. Syntax: CREATE VIEW v_students AS SELECT name FROM students;
+INDEX Description: Improves query performance. Syntax: CREATE INDEX idx_name ON students(name);
+TRANSACTION Description: Controls data consistency. Syntax: BEGIN TRANSACTION; COMMIT; ROLLBACK;
+STORED PROCEDURE Description: Predefined SQL block. Syntax: CREATE PROCEDURE getData AS SELECT * FROM students;
+TRIGGER Description: Auto executed on events. Syntax: CREATE TRIGGER trg_insert BEFORE INSERT ON students FOR EACH ROW BEGIN – logic END;
+FUNCTION Description: Custom function. Syntax: CREATE FUNCTION addNum(a INT, b INT) RETURNS INT RETURN a + b;
+COMMIT-For save changes.
+ROLLBACK-Undo the Content.
+CTE Temporary result set.

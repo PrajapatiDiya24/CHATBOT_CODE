@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="chat-header">
+    <img src="{{ url_for('static', filename='SQL_Bot_1.png') }}" class="image">
+    SQL Bot
+</div>
+
+    <div id="chatbox"></div>
+
+    <div class="input-area">
+        <input type="text" id="userInput" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+console.log("Script loaded");
+
+async function sendMessage() {
+    console.log("Send button clicked");
+
+    const input = document.getElementById("userInput");
+    const chatbox = document.getElementById("chatbox");
+    const userInput = input.value.trim();
+
+    if (!userInput) return;
+
+    // show user message
+    chatbox.innerHTML += `<div class="message user">${userInput}</div>`;
+    input.value = "";
+
+    try {
+        const response = await fetch("/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ message: userInput })
+        });
+
+        const data = await response.json();
+
+        chatbox.innerHTML += `<div class="message bot">${data.reply}</div>`;
+        chatbox.scrollTop = chatbox.scrollHeight;
+
+    } catch (error) {
+        console.error(error);
+        chatbox.innerHTML += `<div class="message bot">Server error</div>`;
+    }
+}
+
+// ENTER key support
+document.getElementById("userInput").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+        sendMessage();
+    }
+});
+</script>
+</body>
+</html>
